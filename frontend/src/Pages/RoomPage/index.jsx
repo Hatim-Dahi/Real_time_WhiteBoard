@@ -75,7 +75,7 @@ const RoomPage = ({ user, socket, users }) => {
     console.log("color", color, notes);
     document.body.style.cursor = "crosshair";
     setNewNoteToAdd({
-      text: "Hatim Dahi ",
+      text: "",
       color: color,
     });
   };
@@ -286,6 +286,7 @@ const RoomPage = ({ user, socket, users }) => {
           user={user}
           socket={socket}
           notes={notes}
+          setNotes={setNotes}
         />
       </div>
     </div>

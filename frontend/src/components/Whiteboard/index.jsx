@@ -12,6 +12,7 @@ const whiteboard = ({
   user,
   socket,
   notes,
+  setNotes,
 }) => {
   const [img, setImg] = useState(null);
   useEffect(() => {
@@ -202,6 +203,14 @@ const whiteboard = ({
     setIsDrawing(false);
   };
 
+  const handleNoteChange = (index, newText) => {
+    console.log(notes);
+    setNotes((prevNotes) =>
+      prevNotes.map((note, i) =>
+        i === index ? { ...note, text: newText } : note
+      )
+    );
+  };
   return (
     <div
       onMouseDown={handleMouseDown}
@@ -223,7 +232,18 @@ const whiteboard = ({
             height: "200px",
           }}
         >
-          {note.text}
+          <textarea
+            style={{
+              backgroundColor: "transparent",
+              border: "none",
+              width: "100%",
+              height: "100%",
+              padding: "5px",
+            }}
+            onChange={(e) => handleNoteChange(index, e.target.value)}
+          >
+            {note.text}
+          </textarea>
         </div>
       ))}
     </div>
